@@ -9,3 +9,49 @@ nav{
     color: white;
     padding: 20px 50px;
 }
+
+.navTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    background-color: gray;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+.searchInput{
+    border: none;
+    color: lightgray;
+    border-color: transparent;
+}
+
+.searchInput::placeholder{
+    color: lightgray;
+}
+
+.holidaySpecial {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.navBottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menuItem{
+    margin-right: 50px;
+    cursor: pointer;
+    color: lightgray;
+    font-weight: 400;
+}
+
+/* .slider{
+    background: url(); find a background image 
+}

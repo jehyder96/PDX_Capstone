@@ -1,3 +1,51 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Shopping Cart</h1>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box-element">
+
+                <a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Continue Shopping</a>
+
+                <br>
+                <br>
+                <table class="table">
+                    <tr>
+                        <th><h5>Items: <strong>3</strong></h5></th>
+                        <th><h5>Total:<strong>$29.99</strong></h5></th>
+                        <th>
+                            <a style="float:right; margin: 5px;" class="btn btn-success" href="{% url 'checkout' %}">
+                            checkout</a>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+            
+            <br>
+            <div class="box-element">
+                <div class="cart-row">
+                    <div style="flex:2"></div>
+                    <div style="flex:2"><strong>Item</strong></div>
+                    <div style="flex:1"><strong>Price</strong></div>
+                    <div style="flex:1"><strong>Quantity</strong></div>
+                    <div style="flex:1"><strong>Total</strong></div>
+                </div>
+
+                <div class="cart-row">
+                    <!-- <div style="flex:2"><img class ="row-image" src="{% static 'img/all-products-demo.jpg' %}">Need to fix sizing of image</div> -->
+                    <div style="flex:2"><strong>Product 1</strong></div>
+                    <div style="flex:1"><strong>$19.99</strong></div>
+                    <div style="flex:1">
+                        <p class="quantity">1</p>
+                        <div class="quantity">
+                            <img class="change-quantity" src="{% static 'img/chevron-compact-down.jpg' %}">
+
+                            <img class="change-quantity" src="{% static 'img/chevron-compact-up.jpg' %}">
+                        </div>
+                    </div>
+                    <div style="flex:1"><p>$19.99</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

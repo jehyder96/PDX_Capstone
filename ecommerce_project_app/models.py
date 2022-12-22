@@ -1,19 +1,35 @@
 from django.db import models
+from django.contrib.auth.models import User #default Django user models
 
-class Author(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    email = models.EmailField()
+
+class Customer(models.Model):
+    user = models.OneToOneField(User, null=True, blank=True, on_delete=models.CASCADE) #user can only have one customer and vice versa
+    name = models.CharField(max_length=150, null=True)
+    email = models.EmailField(max_length=200, null=True)
     
     def __str__(self):
-        return self.first_name
+        return self.name
 
 
-class Article(models.Model):
-    blog = models.ForeignKey(Author, on_delete=models.CASCADE) ##if we delete an Author, all articles associated with that author will get deleted. 
-    title = models.CharField(max_length = 200)
-    text = models.TextField(max_length = 500)
-    pub_date = models.DateField()
+class Product(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    price = models.FloatField()
+    #image set this later
 
     def __str__(self):
-        return self.title
+        return self.name
+
+class Order(models.Model):
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True) #if a customer gets deleted, it only sets the customer value to Null
+    order_placed = models.DateTimeField(auto_now_add=True)
+    complete = models.BooleanField(default=False) #if complete is false, the customer can continue adding items
+    transaction_id = models.CharField(max_length=100, null=True)
+
+    def __str__(self):
+        return str(self.id)
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, blank=True, null=True)
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, blank=True, null=True)
+    quantity = models.IntegerField(default=0, null=True, blank=True)
+    order_added = models.DateTimeField(auto_now_add=True)

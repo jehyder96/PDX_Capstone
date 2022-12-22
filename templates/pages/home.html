@@ -5,7 +5,6 @@
     <nav>
         <div class="navTop">
             <div class="navItem">
-                <!-- <img class="background-image" src="static/img/background-image-demo.jpeg" alt="A photo of a flower"> -->
             </div>
             <nav class="navbar navbar-expand-lg">
                 <div class="container-fluid">
@@ -16,19 +15,21 @@
                   <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                       <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="#">Learn</a>
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
                       </li>
                       <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                           Shop
                         </a>
+                        <ul class="dropdown-menu">
+                          <li><a class="dropdown-item" href="{% url 'hair' %}">Hair Products</a></li>
+                          <li><a class="dropdown-item" href="{% url 'wash' %}">Body Wash</a></li>
+                          <li><a class="dropdown-item" href="{% url 'skin' %}">Skin Care</a></li>
+                       </ul>
                       </li>
-                      <!-- <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
-                      </li> -->
                     </ul>
                     <form class="d-flex" role="search">
                       <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -37,58 +38,28 @@
                   </div>
                 </div>
               </nav>
-            <!-- <div class="navItem"></div>
-                <div class="search">
-                    <input type="text" placeholder="Search..." class="searchInput">
-                    <img src='{% static "img/searchbar.png" %}'width="20" height="20" alt="an image of a magnifying glass" class="searchIcon">
-                </div> -->
             <div class="navItem"></div>
                 <span class="holidaySpecial">Sun Kissed Edible Cosmetics</span>
         </div>
     </nav>
     <div class="sliderWrapper">
         <div class="sliderItem">
-            <!-- <img src='{% static "img/bar-soap-demo.jpeg" %}' alt=“A photo of bar soap” class=“sliderImg”> -->
-            <!-- <div class="slideBg"></div>
-            <h1 class="sliderTitle">Edible Cosmetics</br>Organic</br>Hand Made</h1>
-            <h2 class="sliderPromo">Free shipping on orders more than $49.99</h2>
-            <button class="buyButton">Add to cart</button> -->
         </div>
     </div>
     <div class="sliderWrapper">
         <div class="sliderItem">
-            <!-- <img src="./img/exfoliating-scrub-demo.jpg" alt="A photo of exfoliating scrub" class="sliderImg">
-            <div class="slideBg"></div> -->
-            <!-- <h1 class="sliderTitle">Edible Cosmetics</br>Organic</br>Hand Made</h1>
-            <h2 class="sliderPromo">Free shipping on orders more than $49.99</h2>
-            <button class="buyButton">Add to cart</button> -->
         </div>
     </div>
     <div class="sliderWrapper">
         <div class="sliderItem">
-            <!-- <img src="./img/moisturizer-demo.jpg" alt="A photo of moisturizer" class="sliderImg">
-            <div class="slideBg"></div> -->
-            <!-- <h1 class="sliderTitle">Edible Cosmetics</br>Organic</br>Hand Made</h1>
-            <h2 class="sliderPromo">Free shipping on orders more than $49.99</h2>
-            <button class="buyButton">Add to cart</button> -->
         </div>
     </div>
     <div class="sliderWrapper">
         <div class="sliderItem">
-            <!-- <img src="./img/sea-salt-scrub-demo.jpg" alt="A photo of sea salt scrub" class="sliderImg">
-            <div class="slideBg"></div> -->
-            <!-- <h1 class="sliderTitle">Edible Cosmetics</br>Organic</br>Hand Made</h1>
-            <h2 class="sliderPromo">Free shipping on orders more than $49.99</h2>
-            <button class="buyButton">Add to cart</button> -->
         </div>
     </div>
     <div class="sliderWrapper">
         <div class="sliderItem">
-            <!-- <img src="static/img/" alt="A photo of shampoo" class="sliderImg">
-            <div class="slideBg"></div> -->
-            <!-- <h1 class="sliderTitle">Edible Cosmetics</br>Organic</br>Hand Made</h1>
-            <h2 class="sliderPromo">Free shipping on orders more than $49.99</h2>
-            <button class="buyButton">Add to cart</button> -->
         </div>
     </div>
 {% endblock %}

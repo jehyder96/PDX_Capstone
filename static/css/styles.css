@@ -46,6 +46,10 @@ nav{
   border-radius: 10px;
 }
 
+.hidden{
+  display: none!important;
+}
+
 .searchInput{
   border: none;
   color: lightgray;

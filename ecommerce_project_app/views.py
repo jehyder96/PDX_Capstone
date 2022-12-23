@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import * #importing all models
 
 def home(request):
     return render(request, 'pages/home.html')
@@ -13,13 +14,21 @@ def about(request):
     return render(request, 'pages/about.html')
 
 def products(request):
-    return render(request, 'pages/products.html')
+    products = Product.objects.all()
+    context = {'products':products}
+    return render(request, 'pages/products.html', context)
 
 def hair(request):
-    return render(request, 'pages/hair.html')
+    hair_products = Product.objects.filter(product_type='Hair')
+    context = {'hair':hair_products}
+    return render(request, 'pages/hair.html', context)
 
 def skin(request):
-    return render(request, 'pages/skin.html')
+    skin_products = Product.objects.filter(product_type='Skin')
+    context = {'skin':skin_products}
+    return render(request, 'pages/skin.html', context)
 
 def wash(request):
-    return render(request, 'pages/wash.html')
+    wash_products = Product.objects.filter(product_type='Wash')
+    context = {'wash':wash_products}
+    return render(request, 'pages/wash.html', context)

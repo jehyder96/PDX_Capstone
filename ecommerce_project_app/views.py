@@ -5,6 +5,13 @@ def home(request):
     return render(request, 'pages/home.html')
 
 def cart(request):
+    if request.user.is_authenticated:
+        customer = request.user.customer # to access the one to one relationship
+        order, created = Order.objects.get_or_create(customer=customer, complete=False) #create it or find the item
+        items = order.orderitem_set.all()
+    else:
+        items = [] #if we don't have it we don't start the loop
+        order ={'get_cart_total':0, 'get_cart_items':0}
     return render(request, 'pages/cart.html')
 
 def checkout(request):
@@ -32,3 +39,4 @@ def wash(request):
     wash_products = Product.objects.filter(product_type='Wash')
     context = {'wash':wash_products}
     return render(request, 'pages/wash.html', context)
+

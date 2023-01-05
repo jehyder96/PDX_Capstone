@@ -27,7 +27,7 @@
                 <br>
 
 
-                <p> {{ i.description }} </p>
+                <p> {{i.description}} </p>
 
                 <div class="border">
 
@@ -38,9 +38,9 @@
                             <div class="col-6"> Price </div>
 
                             <div class="col-6 text-end"><span class="h4 fw-bold">${{i.price}} </span></div>
-
+                            {% endfor %}
                         </div>
-                        {% endfor %}
+
                     </div>
 
                     <div class="col">
@@ -69,9 +69,9 @@
                             </div>
 
                             <div class="col-6 text-end">
-                                
-                                <button type="button" id="add-button" value="" class="btn btn-secondary btn-sm">
-                        
+
+                                <button type="button" id="add-button" value="{{product.id}}" class="btn btn-secondary btn-sm">
+
                                 Add to cart 
                             
                                 </button> 
@@ -94,5 +94,46 @@
     <br>
 
 </div>
+
+<script>
+
+    $(document).on('click', '#add-button', function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type: 'POST',
+            url: '{% url "cart-add" %}',
+            data: {
+                product_id: $('#add-button').val(),
+                product_quantity: $('#select option:selected').text(),
+                csrfmiddlewaretoken: "{{csrf_token}}",
+                action: 'post'
+
+
+            },
+
+            success:function(json){
+
+            },
+
+            error: function(xhr, errmsg, err){
+
+            }
+
+
+
+        });
+        
+
+
+
+
+
+    })
+
+
+
+
+</script>
 
 {% endblock %}

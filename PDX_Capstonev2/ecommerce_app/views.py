@@ -7,7 +7,7 @@ def home(request):
 
     context = {'all_products': all_products}
 
-    return render(request, 'pages/home.html', context=context)
+    return render(request, 'pages/home.html', context)
 
 def categories(request):
 

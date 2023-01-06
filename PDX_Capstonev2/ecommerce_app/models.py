@@ -13,6 +13,9 @@ class Category(models.Model):
     def __str__(self):
 
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('list-category', args=[self.slug])
 
 class Cart(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
@@ -36,6 +39,6 @@ class Product(models.Model):
     def __str__(self):
         return f'{self.name} {self.price} {self.image}'
 
-    # def get_absolute_url(self):
+    def get_absolute_url(self):
 
-    #     return reverse('list-category', args=[self.slug])
+        return reverse('product-info', args=[self.slug])

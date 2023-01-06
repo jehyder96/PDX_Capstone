@@ -1,3 +1,5 @@
+from ecommerce_app.models import Product
+
 class Cart():
 
     def __init__(self, request):

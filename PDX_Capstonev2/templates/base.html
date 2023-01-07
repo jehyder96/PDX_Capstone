@@ -159,7 +159,7 @@
 
 
                         <i class="fa fa-shopping-cart" aria-hidden="true"> </i>
-
+                        <!-- non breaking space -->
                         &nbsp; 
 
                         <div id="cart-qty" class="d-inline-flex">
@@ -169,18 +169,13 @@
 
                                 
                                 {% if qty_amount > 0 %}
-                            
+                            <!-- return the quantity amount -->
                                     {{ qty_amount }}
 
-
                                     {% else %}
-
+                                    <!-- return zero if it isn't the case -->
                                         0
-
-
                                 {% endif %}
-
-
 
                             {% endwith %}
 

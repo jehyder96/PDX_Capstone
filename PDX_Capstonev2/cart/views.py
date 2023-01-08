@@ -29,9 +29,28 @@ def cart_add(request):
 
 def cart_delete(request):
 
-    pass
+    cart = Cart(request)
+
+    if request.POST.get('action') == 'post':
+
+        product_id = int(request.POST.get('product_id'))
+        cart.delete(product=product_id)
+        cart_quantity = cart.__len__() #getting the cart quantity
+        cart_total = cart.get_total()
+        response = JsonResponse({'qty':cart_quantity, 'total':cart_total})
+        return response
 
 def cart_update(request):
 
-    pass
-# Create your views here.
+    cart = Cart(request)
+
+    if request.POST.get('action') == 'post':
+        product_id = int(request.POST.get('product_id'))
+        product_quantity = int(request.POST.get('product_quantity'))
+        # creating the function
+        cart.update(product=product_id, qty=product_quantity)
+        #updating the total number of products in the shopping cart
+        cart_quantity = cart.__len__()
+        cart_total = cart.get_total()
+        response = JsonResponse({'qty':cart_quantity, 'total':cart_total})
+        return response

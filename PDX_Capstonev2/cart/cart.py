@@ -24,7 +24,26 @@ class Cart():
 
         self.session.modified = True #telling Django that the session has been modified
 
-    #function to count all items in the cart class
+    def delete(self, product):
+
+        product_id = str(product)
+
+        if product_id in self.cart:
+            del self.cart[product_id]
+
+        self.session.modified = True
+
+    def update(self, product, qty):
+        
+        product_id = str(product)
+        product_quantity = qty
+        #checking if the product is in the users cart and if it exist, it will select the quanity with the update sent to the views post request
+        if product_id in self.cart:
+            self.cart[product_id]['qty'] = product_quantity
+    
+        self.session.modified = True
+    
+    #function to count all items in the cart class  
     def __len__(self):
         return sum(item['qty'] for item in self.cart.values()) #the .values method gets the total items in shopping cart
 
@@ -41,3 +60,7 @@ class Cart():
             item['total'] = item['price'] * item['qty']
 
         yield item #pauses the execution but delivers the object
+
+    def get_total(self):
+        return sum(Decimal(item['price']) * item['qty'] for item in self.cart.values()) 
+        #in the event that there is a decimal price | get the item for each item in the cart and multiply by the quantity 'qty' and return the total price

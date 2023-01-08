@@ -58,8 +58,8 @@
                   <label for="select">Quantity</label>
 
                   &nbsp; 
-                  
-                  <select id="">
+                  <!-- adding the product ID to our select element so we can select multiple quantitys per product -->
+                  <select id="select{{product.id}}">
                   
                     <option selected>
                   
@@ -78,8 +78,8 @@
                   </select>
                   
                   <br> <br>
-
-                  <button type="button" id="update-button"
+                  <!-- using the data index instead of the value property because I have multiple products and to avoid issues with using the product id-->
+                  <button type="button" data-index="{{product.id}}"
                     class="btn btn-primary btn-sm update-button">
                     Update
                   
@@ -87,7 +87,7 @@
                   
                   &nbsp;
 
-                  <button type="button" id="delete-button"
+                  <button type="button" data-index="{{product.id}}"
                     class="btn btn-danger btn-sm delete-button">
                     Delete
         
@@ -112,15 +112,119 @@
 
       <div class="col-12 text-end">
  
-        <div class="h6 fw-bold"> Sub total: $ <div id="subtotal" class="d-inline-flex"> <!-- cart.get_total --> </div></div>
+        <div class="h6 fw-bold"> Sub total: $ <div id="total" class="d-inline-flex"> {{cart.get_total}} </div></div>
  
       </div>
  
 
     </div>
   
+    <br>
 
  </main>
+
+ <script>
+
+  // Delete button
+
+    $(document).on('click', '.delete-button', function(e){
+        console.log('water bottle')
+        e.preventDefault();
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart-delete" %}',
+            data: {
+
+                product_id: $(this).data('index'), //checking which button the user is selecting
+                csrfmiddlewaretoken: "{{csrf_token}}", //always use csrf when using ajax
+                action: 'post'
+
+            },
+
+            success: function(json){
+
+                // console.log(json)
+
+                location.reload(); // this function deletes the product from the checkout page
+
+                document.getElementById("cart-qty").textContent = json.qty //the keys being referenced in the json response
+
+                document.getElementById("total").textContent = json.total
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+                // console.log('hello world')
+
+
+            }
+
+        });
+
+
+    })
+
+
+
+
+</script>
+
+
+
+<script>
+
+  // Update button
+
+    $(document).on('click', '.update-button', function(e){
+        // console.log('hello alex')
+        e.preventDefault();
+
+        let theproductid = $(this).data('index');
+
+        $.ajax({
+
+            type: 'POST',
+            url: '{% url "cart-update" %}',
+            data: {
+
+                product_id: $(this).data('index'), //checking which button the user is selecting
+                product_quantity: $('select' + theproductid + ' option:selected').text(), //selecting the product quantity based on the product id
+                csrfmiddlewaretoken: "{{csrf_token}}", //always use csrf when using ajax
+                action: 'post'
+
+            },
+
+            success: function(json){
+
+                // console.log(json)
+
+                location.reload(); // this function deletes the product from the checkout page
+
+                document.getElementById("cart-qty").textContent = json.qty //the keys being referenced in the json response
+
+                document.getElementById("total").textContent = json.total
+
+
+            },
+
+            error: function(xhr, errmsg, err){
+                // console.log('hello world')
+
+
+            }
+
+        });
+
+
+    })
+
+
+
+
+</script>
 
 
 

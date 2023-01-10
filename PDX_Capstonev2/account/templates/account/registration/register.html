@@ -1,0 +1,48 @@
+{% extends 'base.html' %} 
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <!-- #doing in line css to prevent all of the body tag from being grayed out -->
+    <style>
+
+        body{
+            background-color: rgb(227, 220, 220);
+        }
+
+
+    </style>
+    <body>
+        <br>
+
+        <div class="container bg-white shadow-md p-5 form-layout">
+
+            <h3> Create your account </h3>
+
+            <h5> Join for loyalty rewards </h5>
+
+            <br>
+            <br>
+
+            <form method="POST" autocomplete="off">
+                <br>
+                {% csrf_token %}
+
+                {{form.username | as_crispy_field}}
+                
+                {{form.email | as_crispy_field}}
+                <br>
+                {{form.password1 | as_crispy_field}}
+                <br>
+                {{form.password2 | as_crispy_field}}
+                
+                <button type="submit" class="btn btn-secondary btn-lg w-100 btn-block p-2"> &nbsp; Create </button>
+                <br> <br>
+            </form>
+        </div>
+
+
+
+
+
+    </body>
+{% endblock %}

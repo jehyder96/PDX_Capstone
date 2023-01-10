@@ -191,7 +191,7 @@
             data: {
 
                 product_id: $(this).data('index'), //checking which button the user is selecting
-                product_quantity: $('select' + theproductid + ' option:selected').text(), //selecting the product quantity based on the product id
+                product_quantity: $('#select' + theproductid + ' option:selected').text(), //selecting the product quantity based on the product id
                 csrfmiddlewaretoken: "{{csrf_token}}", //always use csrf when using ajax
                 action: 'post'
 
